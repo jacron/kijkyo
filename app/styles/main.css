@@ -1,0 +1,328 @@
+/* kijkyo */
+
+
+body {
+    background: #777;
+    margin: 0;
+}
+
+
+.next,
+.prev {
+    float: left;
+}
+.next,
+.prev {
+    font-size: 28px;
+    color: #666;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.container {
+    max-width: none !important;
+}
+
+#menu {
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    z-index: 1;
+    padding: 3px 2px 3px 6px;
+}
+
+input.nummer {
+    width: 50px;
+}
+
+.error {
+    color: red;
+    font-style: italic;
+    font-size: 22px;
+    padding: 30px;
+    background: #222;
+}
+
+.errorDrBr {
+    color: red;
+    font-style: italic;
+}
+
+.portrait {
+    transform: rotate(45deg);
+    transform-origin:20% 40%;
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -ms-transform-origin:20% 40%; /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+    -webkit-transform-origin:20% 40%; /* Chrome, Safari, Opera */
+}
+
+.refresh {
+    display: inline-block;
+    margin: 0 8px 0 -22px;
+}
+.refresh img {
+    position: relative;
+    top: 3px;
+}
+.path {
+    width: 400px;
+}
+
+.toggle-tags {
+    right: 5px;
+    top: 4px;
+    position: fixed;
+    display: inline-block;
+}
+.toggle-tags.busy {
+    background: #cfc;
+}
+.loading {
+    display: inline-block;
+    position: absolute;
+    left: 422px;
+    top: 6px;
+    background: #fff;
+    height: 16px;
+    z-index: 9;
+}
+.save-tags {
+    position: fixed;
+    top: 7px;
+    right: 82px;
+}
+.slideshow-indicator {
+    position: fixed;
+    top: 7px;
+    right: 166px;
+    color: #33f;
+}
+.set-slideshow-delay {
+    position: fixed;
+    top: 7px;
+    right: 136px;
+    cursor: pointer;
+}
+.set-slideshow-delay:hover {
+    background: #9d9;
+}
+.open-container {
+    position: fixed;
+    top: 7px;
+    right: 106px;
+}
+.all-tags {
+    position: fixed;
+    top: 27px;
+    right: 6px;
+    min-width: 100px;
+    background: #efe;
+    z-index: 9;
+}
+.all-tags.empty {
+    background: #fff;
+}
+.all-tags ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 18px;
+}
+.all-tags li {
+    padding: 6px 6px;
+}
+.all-tags li:hover {
+    background: #bfb;
+}
+
+tags-input .autocomplete {
+    width: inherit;
+}
+
+#prev-image,
+#next-image {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+/*    background: red;
+    opacity: 0.07;*/
+}
+#prev-image {
+    left: 0;
+    right: 85%;
+}
+#next-image {
+    left: 85%;
+    right: 0;
+}
+.big {
+    color: green;
+}
+.shrunk {
+    border-color: violet !important;
+}
+.super {
+    color: violet;
+}
+.dimensions {
+    border: 1px solid #333;
+    margin: 0 8px 0 4px;
+    width: 90px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+.directory-browser {
+    position: fixed;
+    left: 5px;
+    background: #fff;
+    /*box-shadow: 10px 10px 5px #888888;*/
+    border: 1px solid #ccc;
+/*    width: 300px;*/
+    z-index: 5;
+}
+
+.directory-browser ul {
+    list-style: none;
+    cursor: default;
+    padding: 0;
+    margin: 0;
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 8px;
+}
+
+.directory-browser .buttons {
+    display: inline-block;
+    margin: 0 0 6px 6px;
+    padding-top: 4px;
+}
+.directory-browser .buttons select {
+    position: relative;
+    right: -114px;
+}
+.directory-browser ul li {
+    line-height: 22px;
+    z-index: 5;
+    border:1px solid #efefef;
+    padding: 0px 6px;
+}
+
+.directory-browser ul li:hover {
+    background: #cef;
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.path,
+.directory-browser ul {
+    font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.dropdown-caret-container {
+    position: relative;
+    left: -31px;
+    display: inline-block;
+    width: 18px;
+    padding-left: 8px;
+    background: #eee;
+}
+.toggle-tags span {
+    display: inline-block;
+}
+.toggle-tags .caret {
+    width: 10px;
+    height: 10px;
+}
+.dropdown-caret-container:hover {
+    background: #cef;
+}
+.dir-waiting {
+    display: inline-block;
+    position: absolute;
+    margin-left: -56px;
+    margin-top: 5px;
+}
+.splitter {
+    height: 10px;
+}
+.dir-selector {
+    width: 34px;
+}
+.path-part:hover{
+    text-decoration: underline;
+}
+.path-part {
+    margin: 0 4px;
+}
+.path-part:after {
+    content:'';
+   display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  /* down
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+   */
+   /* right */
+  border-left: 4px solid;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  margin: 0 0 2px 6px;
+}
+.crumbs {
+    padding: 3px 0 0 10px;
+/*    width: 480px;*/
+}
+#sidebar {
+    position: fixed;
+    right: 0;
+    top: 30px;
+    width: 130px;
+    padding: 1px 2px 6px;
+    background: #fff;
+    z-index: 9;
+    font-size: 22px;
+    background: #888;
+}
+.indexAndCount,
+.folder-name,
+.tag-name {
+    border: 1px solid #333;
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+    margin: 4px 4px 5px 4px;
+    background: #ccc;
+    overflow-x: hidden;
+}
+.indexlimit {
+    border-color: violet !important;
+    color: red;
+}
+#sidebar .dimensions {
+    width: 120px;
+    height: 24px;
+    background: #ccc;
+}
+.curdirinfo {
+    margin-left: 8px;
+}
+.star-icon {
+    padding: 8px 0 0 52px;
+}

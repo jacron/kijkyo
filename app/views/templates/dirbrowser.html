@@ -1,0 +1,58 @@
+<!-- jc-dir-browser    kijyo   -->
+<input type="text"
+       ng-model="dir.path"
+       ng-keydown="dir.handleInputPath($event)"
+       ng-click="dir.stopPropagation($event)"
+       class="path"
+       title="{{dir.path}}">
+
+<div class="dir-waiting"
+     ng-show="dir.waiting">
+    <img ng-src="images/waiting-icon.gif">
+</div>
+<div ng-click="dir.dialog()"
+     class="dropdown-caret-container">
+    <span class="caret"></span>
+</div>
+<div class="directory-browser"
+     ng-show="dir.showDirs">
+    <div class="crumbs">
+        <a ng-repeat="pathPart in dir.pathParts"
+           ng-bind="pathPart"
+           ng-class="{'path-part':$index < dir.pathParts.length - 1}"
+           data-index="{{$index}}"
+           ng-click="dir.toPart(pathPart)"></a>
+    </div>
+    <ul>
+        <li ng-click="dir.higherDir()" ng-show="dir.showFolderUp">
+            <img src="images/folderup.gif">
+        </li>
+        <li
+            ng-repeat="cdir in dir.curdirs"
+            ng-click="dir.openDir(cdir)"
+            title="{{cdir.info}}"
+            >
+            <a ng-bind="cdir.name"></a>
+        </li>
+        <li ng-show="dir.showInfoOnDir">
+            Here comes the info...
+        </li>
+    </ul>
+    <div class="buttons">
+        <button ng-click="dir.directoryChange()">OK</button>
+        <button ng-click="dir.directoryCancel()">Annuleren</button>
+    </div>
+    <div ng-bind="dir.curdirinfo" class="curdirinfo"></div>
+    <div class="splitter"
+         data-vsplitter=".directory-browser ul">
+        </div>
+    <div class="errorDirBr"
+         ng-bind="dir.errorMessage"
+         ng-show="dir.path.length==0"></div>
+</div>
+<div id="overlay"
+     ng-click="dir.hidePopup()"
+     ng-show="dir.showOverlay">
+
+</div>
+<!-- end of jc-dir-browser -->

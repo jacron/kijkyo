@@ -1,0 +1,160 @@
+<div class="prev" ng-show="(inx > 0) && showArrows">
+    <a ng-click="prev()">&lt;</a>
+</div>
+<div ng-bind="errorMessage"
+     ng-show="errorMessage.length"
+     class="error"></div>
+<div class="image">
+
+        <!-- BEGIN menu -->
+        <div ng-show="showMenu" id="menu">
+            <form id="myForm">
+            <jc-dir-browser jc-dir-browser-data="dir"></jc-dir-browser>
+
+            <div class="loading"
+                 ng-show="loading">
+                <img src="images/waiting.gif">
+            </div>
+            <div class="refresh"
+                 ng-click="refresh()"
+                 title="Haal plaatjeslijst opnieuw op">
+                <img src="images/icon_refresh.png">
+            </div>
+            <input type="checkbox"
+                   ng-model="images[inx].normalbottom"
+                   ng-click="toggleNormalbottom($e)"
+                   title="normal-bottom">
+            <button ng-click="getNumber($event)">
+                Nr.
+            </button>
+            <span ng-class="{indexlimit:inx === 0 || inx === imagesCount - 1}">
+                <span ng-bind="index"></span>
+                / <span ng-bind="imagesCount"></span>
+            </span>
+            <span ng-class="{big: images[inx].width > 1000, super: images[inx].width > 2000, shrunk: shrunk}"
+                  class="dimensions">
+                <span ng-bind="images[inx].width"></span>
+                <span ng-show="images[inx].width"> x </span>
+                <span ng-bind="images[inx].height"></span>
+            </span>
+            <span ng-bind="images[inx].name"></span>
+            <!--
+            <input type="checkbox"
+                   ng-model="showArrows"
+                   ng-click="stopPropagation($event)"
+                   title="Toon / verberg pijltjes">-->
+            <div class="slideshow-indicator"
+                 ng-show="slideShowRunning">
+                Diashow
+            </div>
+            <div class="set-slideshow-delay"
+                 ng-click="setSlideshowDelay()"
+                 title="{{'Stel diashow in (' + slideShowDelay + ' ms)'}}">
+                set
+            </div>
+            <div class="open-container"
+                 ng-click="openContainer()"
+                 title="Open verkenner">
+                <img src="images/explorer.gif">
+            </div>
+            <div class="save-tags"
+                 ng-click="saveImages()"
+                 title="Sla tags op">
+                <img src="images/bewaar.gif">
+            </div>
+            <button class="toggle-tags"
+                    ng-class="{busy: tagsFilter.length}">
+                <span ng-click="toggleTags()">Tags</span>
+                <span class="caret" ng-click="listAllTags()"></span>
+            </button>
+            <div ng-show="showAllTags"
+                 class="all-tags" ng-class="{empty: !allTags.length}">
+                <ul>
+                    <li ng-show="!allTags.length">Geen tags</li>
+                    <li ng-repeat="allTag in allTags"
+                        ng-bind="allTag.text"
+                        ng-click="addTag2Filter(allTag)"></li>
+                </ul>
+            </div>
+            <tags-input
+                ng-keydown="stopPropagation($event)"
+                ng-model="tags"
+                add-on-blur="false"
+                ng-show="showTags"
+                placeholder="Add to image"
+                on-tag-added="tagAddedToImage($tag)"
+                on-tag-removed="tagRemovedFromImage($tag)"
+                id="add-tag-to-image"
+                >
+                <auto-complete
+                    source="loadTags($query)"
+                    max-results-to-show="100"
+                    min-length="2">
+                </auto-complete>
+            </tags-input>
+            <tags-input
+                ng-keydown="stopPropagation($event)"
+                ng-model="tagsFilter"
+                add-on-blur="false"
+                ng-show="showTags"
+                on-tag-added="tagAddedToFilter($tag)"
+                on-tag-removed="tagRemovedFromFilter($tag)"
+                add-from-autocomplete-only="true"
+                placeholder="Add to filter"
+                class="filter">
+                <auto-complete
+                    source="loadTags($query)"
+                    max-results-to-show="100"
+                    min-length="2">
+                </auto-complete>
+            </tags-input>
+            </form>
+        </div>
+        <!-- EINDE menu -->
+        <div id="sidebar"
+             data-draggable="0, 150"
+             data-draggable-horizontal-offset="right"
+             ng-show="showSidebar">
+            <span class="tag-name" ng-show="tagName.length">
+                <span ng-bind="tagName"></span>
+            </span>
+            <span class="folder-name">
+                <span ng-bind="folderName"
+                      title="{{folderName}}">
+
+                </span>
+            </span>
+            <span class="indexAndCount"
+                  ng-class="{indexlimit:inx === 0 || inx === imagesCount - 1}">
+                <span ng-bind="inx + 1"></span>
+                / <span ng-bind="imagesCount"></span>
+            </span>
+            <span ng-class="{big: images[inx].width > 1000, super: images[inx].width > 2000, shrunk: shrunk}"
+                  class="dimensions">
+                <span ng-bind="images[inx].width"></span>
+                <span ng-show="images[inx].width"> x </span>
+                <span ng-bind="images[inx].height"></span>
+            </span>
+            <span ng-click="toggleFavorite()">
+                <span
+                    class="fa star-icon"
+                    ng-class="{'fa-star': images[inx].favorite, 'fa-star-o':!images[inx].favorite}">
+            </span>
+        </div>
+
+        <!-- Main Image -->
+        <div id="main-image-container">
+            <img ng-src="{{imagePath}}{{utf8_decode(images[inx].name)}}"
+                 alt="image"
+                 autosize
+                 autosize-adjust="autoSizeImage()"
+                 id="main-image">
+        </div>
+
+</div>
+<div class="next" ng-show="(inx < images.length - 1) && showArrows">
+    <a ng-click="next()">&gt;</a>
+</div>
+
+<div id="prev-image" ng-click="prev()"></div>
+<div id="next-image" ng-click="next()"></div>
