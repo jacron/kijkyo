@@ -38,10 +38,13 @@ angular.module('kijkyoApp')
       };
 
     this.getDirectoryName = function(path) {
+        if (!path) {
+            return null;
+        }
         var pos = path.lastIndexOf('/');
         return path.substr(pos);
     };
-
+/*
     this.getFiles = function(path, extension, cb){
         $http.get(Settings.srv.dir, {
             params: {
@@ -60,7 +63,7 @@ angular.module('kijkyoApp')
         function(res){
             console.log(res);
         });
-    };
+    };*/
 
     this.getDirs = function(path, cb) {
           //console.log(path);

@@ -5,8 +5,8 @@ angular.module('kijkyoApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ngTagsInput',
-    'jcDirectives'
+  'ngTagsInput'
+    //'jcDirectives'
 ])
   .config(function ($routeProvider) {
     $routeProvider

@@ -7,15 +7,16 @@
 angular.module('kijkyoApp')
   .factory('Settings', function() {
 
-    var host = 'http://192.168.0.100:88',   // zonebus, ook geschikt voor remote access v.d. website
+    var host = 'http://zonebus',
+            //'http://192.168.0.100:88',   // zonebus, ook geschikt voor remote access v.d. website
         hostwin = host,
         storage = {
             name: 'neptunus.kijk.path',
             dflt_path: 'S:/pictures'
-        }
+        };
 //console.log(location.host);
     if (location.host === '192.168.0.101' || location.host === 'saturnus') {
-        host = 'http://192.168.0.101:81';
+        //host = 'http://192.168.0.101:81';
         //zonebus';
         //host = 'http://192.168.0.101/zonebus';
         storage = {
